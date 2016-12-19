@@ -4,7 +4,7 @@ class Server {
     this.path = require('path');
     this.app = this.express();
     this.data = {
-      page: "Game for all cool people"
+      page: 'Game for all cool people'
     };
 
     this.server();
