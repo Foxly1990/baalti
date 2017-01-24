@@ -11,8 +11,9 @@ class Baalti {
     this.cameraHelper(); // Camera
     this.controlsHelper(); // Controls
     this.gridHelper(); // The Grid
-    this.factoryHelper(25); // Create spheres
+    this.factoryHelper(625); // Create spheres
     this.dragControlsHelper(); // dragControls
+    this.drawCirclesHelper(); // Draw circles...
     // Add the output of the renderer
     document.body.appendChild(this.renderer.domElement);
     // Events
@@ -113,10 +114,9 @@ class Baalti {
     randPositionLen = randPosition.length - 1;
 
     let colors, colorsLen;
-    colors = [0x333333, 0xed5e42, 0x3366FF,
-              0xCCCC00, 0xCC6666, 0x999999,
-              0xCCCCCC, 0xCC3300, 0x990000,
-              0x000033];
+    colors = [0x333333, 0xed5e42, 0x3366FF, 0xCCCC00,
+              0xCC6666, 0x999999, 0xCCCCCC, 0xCC3300,
+              0x990000, 0x000033];
     colorsLen = colors.length - 1;
 
     for (let i = 0; i < randPositionLen; i++) {
@@ -150,6 +150,64 @@ class Baalti {
       this.scene.add(sphere);
       this.objects.push(sphere);
     }
+  }
+
+  drawCirclesHelper () {
+    let colors, equalArr;
+
+    // Array with colors
+    colors = ["#333333", "#ed5e42", "#3366FF", "#CCCC00",
+              "#CC6666", "#999999", "#CCCCCC", "#CC3300",
+              "#990000", "#000033"];
+
+    // Shuffle array with colors
+    // Not return new array
+    function shuffle(array) {
+      let counter = array.length;
+
+      // While there are elements in the array
+      while (counter > 0) {
+        // Pick a random index
+        let index = Math.floor(Math.random() * counter);
+
+        // Decrease counter by 1
+        counter--;
+
+        // And swap the last element with it
+        let temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+      }
+
+      return array;
+    }
+
+    // Init shuffle...
+    shuffle(colors);
+
+    // Create new array
+    // TODO: Don't forget about it
+    equalArr = [];
+
+    for (let i = 0; i < colors.length; i++) {
+      if (i % 2 === 0) {
+        equalArr.push([colors[i], colors[i + 1]]);
+      } else {
+        continue;
+      }
+    }
+
+    // Draw our circles...
+    function drawCircles () {
+      let circles = document.querySelectorAll(".circle");
+      let setBack = function (elem, indx) {
+        elem.style.background = colors[indx];
+      };
+
+      [].forEach.call(circles, setBack);
+    }
+
+    document.addEventListener('DOMContentLoaded', drawCircles);
   }
 
   animate () {

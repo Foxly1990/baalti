@@ -1,10 +1,12 @@
+"use strict";
+
 class Server {
   constructor () {
     this.express = require('express');
     this.path = require('path');
     this.app = this.express();
     this.data = {
-      page: 'Game for all cool people'
+      page: 'Игра Baalti'
     };
 
     this.server();
