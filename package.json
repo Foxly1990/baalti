@@ -1,6 +1,6 @@
 {
-  "name": "baalti.v005",
-  "version": "1.0.0",
+  "name": "baalti",
+  "version": "0.0.5",
   "description": "Game like a lines",
   "main": "index.js",
   "scripts": {
